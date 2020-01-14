@@ -18,6 +18,17 @@ pipeline {
 
     stages {
 
+        stage("Docker Login"){
+            stepas {
+                echo "=============== Trying to Log In ================"
+                withCredentials([usernamePassword(credentialsId: 'missingthesun', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
+
         stage("Build a project") {
             steps {
                 echo "=============== Start building a project ================="
