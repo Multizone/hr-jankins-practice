@@ -34,6 +34,9 @@ pipeline {
                 echo "=============== Start building a project ==============="
                 dir('project') {
                     sh 'mvn package'
+                    sh 'ls'
+                    sh 'cd ..'
+                    sh 'ls'
                 }
             }
         }
