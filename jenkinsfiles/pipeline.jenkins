@@ -41,6 +41,9 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
+                sh 'ls'
+                sh 'cd docker && ls'
+                sh 'cd project/target && ls'
                 sh 'docker build -t missingthesun/hr-test ./docker'
             }
         }
