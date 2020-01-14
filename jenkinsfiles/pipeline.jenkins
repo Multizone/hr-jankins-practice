@@ -19,7 +19,7 @@ pipeline {
     stages {
 
         stage("Docker Login"){
-            stepas {
+            steps {
                 echo "=============== Trying to Log In ================"
                 withCredentials([usernamePassword(credentialsId: 'missingthesun', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
