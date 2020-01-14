@@ -20,7 +20,7 @@ pipeline {
 
         stage("Docker Login"){
             steps {
-                echo "=============== Trying to Log In ================"
+                echo "=============== Trying to Log In =============== "
                 withCredentials([usernamePassword(credentialsId: '7c8bdc19-cb23-44a5-a75f-6ff8f1a46a00', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     docker login -u $USERNAME -p $PASSWORD
@@ -31,10 +31,28 @@ pipeline {
 
         stage("Build a project") {
             steps {
-                echo "=============== Start building a project ================="
+                echo "=============== Start building a project ==============="
                 dir('project') {
                     sh 'mvn package'
                 }
+            }
+        }
+
+        stage("Create a Docker image") {
+            steps {
+                echo "=============== Start building an image =============== "
+                dir ('docker') {
+                    sh 'docker build -t missingthesun/hr-test .'
+                }
+            }
+        }
+
+        stage("Docker push") {
+            steps {
+                echo " =============== Start pushing an image =============== "
+                sh '''
+                docker push missingthesun/hr-test
+                '''
             }
         }
     }
