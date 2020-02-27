@@ -33,6 +33,7 @@ pipeline {
             steps {
                 echo "=============== Start building a project ==============="
                 dir('project') {
+                    sh 'java -version'
                     sh 'mvn package'
                 }
             }
