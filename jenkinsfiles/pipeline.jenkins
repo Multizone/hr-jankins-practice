@@ -32,7 +32,7 @@ pipeline {
         stage("Build a project") {
             steps {
                 echo "=============== Start building a project ==============="
-                dir('project') {
+                dir('actuator_mysql') {
                     sh 'java -version'
                     sh 'mvn install'
                 }
@@ -44,16 +44,7 @@ pipeline {
                 echo "=============== Start building an image =============== "
                 sh 'cp ./project/target/hr-0.0.1-SNAPSHOT.jar ./docker'
                 sh 'ls'
-                sh 'docker build -t missingthesun/hr-test ./docker'
-            }
-        }
-
-        stage("Docker push") {
-            steps {
-                echo " =============== Start pushing an image =============== "
-                sh '''
-                docker push missingthesun/hr-test
-                '''
+                sh 'docker build -t missingthesun/actuator-mysql-test ./docker'
             }
         }
     }
