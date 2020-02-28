@@ -39,7 +39,7 @@ pipeline {
                 RUN apt-get update 
                 RUN apt install -y maven
                 COPY actuator_mysql/ /usr/src/myapp
-                CMD ["mnv","package"]>>EOF
+                CMD ["mvn","package"]>>EOF
                 """
                 sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
