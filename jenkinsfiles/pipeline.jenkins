@@ -51,19 +51,5 @@ pipeline {
                */
             }
         }
-        
-        stage("Build Docker image") {
-            steps {
-                echo "=============== Start building an image =============== "
-                sh """
-                docker build --force-rm -t test-image . -f-<<EOF
-                FROM openjdk:8
-                
-                RUN mkdir /var/app
-                RUN chmod +x -R 777 /var/app
-                COPY /shared/actuator_mysql/target/*.jar /var/app/
-                WORKDIR /var/app
-                ENTRYPOINT ["java", "-jar", "actuator_mysql-0.0.1-SNAPSHOT.jar"]>>EOF
-            }
-        }
     }
+}
