@@ -32,16 +32,17 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                sh 'ls $(pwd)/actuator_mysql'
                 sh """
                 docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
                 WORKDIR /usr/src/myapp
+                RUN apt-get update 
                 RUN apt install -y maven
                 RUN touch 111.txt
                 CMD ["mvn", "package"]>>EOF
                 """
                 sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
+                sh 'ls $(pwd)/actuator_mysql'
             }
         }
     }
