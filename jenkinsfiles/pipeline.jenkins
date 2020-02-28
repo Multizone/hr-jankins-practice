@@ -40,11 +40,14 @@ pipeline {
                 RUN apt install -y maven
                 RUN mkdir /usr/dir
                 RUN cd /usr/dir
-                CMD ["mvn","package"]>>EOF
+                CMD ["ls","usr/dir"]>>EOF
                 """
                 sh """
                 docker run --mount type=bind,source="\$(pwd)"/actuator_mysql,target=/usr/dir jp
                 """
+                /*
+               CMD ["mvn","package"]>>EOF
+               */
             }
         }
     }
