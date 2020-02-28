@@ -43,7 +43,7 @@ pipeline {
                 CMD ["ping","www.google.com"]>>EOF
                 """
                 sh """
-                docker run --mount type=bind,source="/home/kub/jenkins/Dockerfile",target=/usr/dir jp
+                docker run --mount type=bind,source="/home/kub/jenkins",target=/usr/dir jp
                 """
                 /*
                CMD ["mvn","package"]>>EOF
