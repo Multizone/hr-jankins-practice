@@ -44,7 +44,6 @@ pipeline {
                 """
                 sh """
                 cp -rf \$(pwd)/actuator_mysql /shared
-                cp -rf /root/.m2 /shared
                 docker run -v /shared/actuator_mysql:/usr/app -v /shared/.m2:/root/.m2 jp
                 """
                 /*-
