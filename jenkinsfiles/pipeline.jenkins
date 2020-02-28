@@ -40,9 +40,7 @@ pipeline {
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
-                RUN mvn --version
-                CMD ["ls"]
-                CMD ["mvn", "package"]>>EOF
+                CMD ["ls"]>>EOF
                 """
                 sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
