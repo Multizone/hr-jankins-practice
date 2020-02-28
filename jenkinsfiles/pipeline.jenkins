@@ -32,8 +32,8 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                bash 'whoami'
-                bash 'pwd'
+                sh 'whoami'
+                sh 'pwd'
                 //bash 'docker build -t missingthesun/test-app ./jenkinsfiles'
             }
         }
