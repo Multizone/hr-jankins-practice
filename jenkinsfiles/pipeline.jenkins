@@ -34,6 +34,7 @@ pipeline {
                 echo "=============== Start building an image =============== "
                 sh 'whoami'
                 sh 'pwd'
+                sh 'docker ps'
                 sh "docker build --no-cache --force-rm -t actuator_mysql . -f-<<EOFEOF"
                 /*
                 FROM openjdk:8
