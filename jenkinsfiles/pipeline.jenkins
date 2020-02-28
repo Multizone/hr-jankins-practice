@@ -40,10 +40,9 @@ pipeline {
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
-                CMD ["ls",">","log.txt"]>>EOF
+                ENTRYPOINT ["ping", "www.google.com"]>>EOF
                 """
-                sh 'docker run -i -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
-                sh 'ls && cat log.txt'
+                sh 'docker run --name lol -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
         }
     }
