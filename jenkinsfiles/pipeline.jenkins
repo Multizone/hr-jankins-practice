@@ -32,10 +32,8 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                sh 'whoami'
-                sh 'pwd'
                 sh'''
-                docker build --no-cache --force-rm -t actuator_mysql cat << 'EOF' >> .
+                docker build --no-cache --force-rm -t actuator_mysql << 'EOF' >> .
                 FROM openjdk:8
                 RUN ls
                 COPY . /usr/src/myapp
