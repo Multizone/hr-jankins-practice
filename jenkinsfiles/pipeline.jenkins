@@ -40,9 +40,10 @@ pipeline {
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
-                ENTRYPOINT ["mvn", "package"]>>EOF
+                CMD ["mvn", "package"]>>EOF
                 """
-                sh 'docker run --name lol -v $(pwd)/actuator_mysql/:/usr/src/myapp jp'
+                sh 'chmod 777 -R $(pwd)/actuator_mysql'
+                sh 'docker run --name lol -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
         }
     }
