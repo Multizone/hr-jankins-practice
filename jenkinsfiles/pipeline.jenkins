@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo "=============== Start building an image =============== "
                 sh """
-                docker build --no-cache --force-rm -t java_package actuator_mysql -f<<EOF
+                docker build --no-cache --force-rm -t jp << 'EOF' >> actuator_mysql
                 FROM openjdk:8
                 RUN ls
                 COPY . /usr/src/myapp
@@ -45,7 +45,7 @@ pipeline {
                 """
                 sh 'ls'
                 /*
-                '''
+                
                 docker build --no-cache --force-rm -t actuator_mysql << 'EOF' >> .
                 FROM openjdk:8
                 RUN ls
@@ -55,7 +55,7 @@ pipeline {
                 RUN apt install -y maven
                 ENTRYPOINT ['mnv package']
                 EOF
-                ''' 
+                
                 
           
                 
