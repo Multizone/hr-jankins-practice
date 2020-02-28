@@ -33,15 +33,16 @@ pipeline {
             steps {
                 echo "=============== Start building an image =============== "
                 sh """
-                docker build --no-cache --force-rm -t jp . -f-<<EOF
+                docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
                 WORKDIR /usr/src/myapp
                 RUN apt-get update 
                 RUN apt install -y maven
                 CMD ["mvn","package"]>>EOF
                 """
-                sh """
-                docker run --mount type=bind,source="$(pwd)"/mysql,target=/usr/src/myapp jp
+                sh 
+                """
+                docker run --mount type=bind,source="$(pwd)"/actuator_mysql,target=/usr/src/myapp jp
                 """
             }
         }
