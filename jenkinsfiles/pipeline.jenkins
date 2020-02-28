@@ -18,7 +18,7 @@ pipeline {
 
     stages {
 
-        stage("Docker Login"){
+        /*stage("Docker Login"){
             steps {
                 echo "=============== Trying to Log In =============== "
                 withCredentials([usernamePassword(credentialsId: 'missing_the_sun', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -27,7 +27,7 @@ pipeline {
                     """
                 }
             }
-        }
+        }*/
 
         stage("Create a Docker image") {
             steps {
