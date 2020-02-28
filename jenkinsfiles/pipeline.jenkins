@@ -41,7 +41,7 @@ pipeline {
                 RUN apt install -y maven
                 RUN mkdir /root/.m2
                 WORKDIR /usr/app
-                CMD ["man","package"]>>EOF 
+                CMD ["mvn","package"]>>EOF 
                 """
                 sh """
                 cp -rf \$(pwd)/actuator_mysql /shared
