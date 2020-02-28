@@ -38,10 +38,11 @@ pipeline {
                 WORKDIR /usr/src/myapp
                 RUN apt-get update 
                 RUN apt install -y maven
-                CMD ["mvn","package"]>>EOF
+                RUN mkdir /usr/dir
+                CMD ["mvn","package","/usr/dir"]>>EOF
                 """
                 sh """
-                docker run --mount type=bind,source="\$(pwd)"/actuator_mysql,target=/usr/src/myapp jp
+                docker run --mount type=bind,source="\$(pwd)"/actuator_mysql,target=/usr/dir jp
                 """
             }
         }
