@@ -43,7 +43,7 @@ pipeline {
                 RUN mvn --version
                 CMD [mvn package /usr/src/myapp]>>EOF
                 """
-                sh 'docker run jp -v $(pwd):/usr/src/myapp/target'
+                sh 'docker run -v $(pwd):/usr/src/myapp/target' jp
             }
         }
     }
