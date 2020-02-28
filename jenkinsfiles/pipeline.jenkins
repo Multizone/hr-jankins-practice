@@ -32,7 +32,14 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                sh'''
+                sh 'cat <<EOF | sh
+                touch Dockerfile
+                echo RUN > Dockerfile
+                EOF
+                '
+                sh 'ls'
+                /*
+                '''
                 docker build --no-cache --force-rm -t actuator_mysql << 'EOF' >> .
                 FROM openjdk:8
                 RUN ls
@@ -45,7 +52,7 @@ pipeline {
                 ''' 
                 
           
-                /*
+                
                docker build --no-cache --force-rm -t actuator_mysql . -f<<EOF
                 FROM openjdk:8
                 RUN ls
