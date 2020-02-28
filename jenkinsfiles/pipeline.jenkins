@@ -33,7 +33,6 @@ pipeline {
             steps {
                 echo "=============== Start building a Java JAR =============== "
                 sh """
-                cp -rf /shared/actuator_mysql/target/*.jar ./
                 docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
                
@@ -41,12 +40,12 @@ pipeline {
                 RUN apt install -y maven
                 RUN mkdir /usr/app
                 WORKDIR /usr/app
-                COPY ./*.jar /usr/app
-                CMD ["ping","1.1.1.1"]>>EOF 
+                CMD ["man","package"]>>EOF 
                 """
                 sh """
                 cp -rf \$(pwd)/actuator_mysql /shared
-                docker run -v /shared/actuator_mysql:/usr/app jp
+                cp -rf /root/.m2 /shared
+                docker run -v /shared/actuator_mysql:/usr/app -v /shared/.m2:/root/.m2 jp
                 """
                 /*-
                CMD ["mvn","package"]>>EOF
