@@ -43,7 +43,7 @@ pipeline {
                 CMD ["mvn", "package"]>>EOF
                 """
                 sh 'chmod 777 -R $(pwd)/actuator_mysql'
-                sh 'docker run --name lol -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
+                sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
         }
     }
