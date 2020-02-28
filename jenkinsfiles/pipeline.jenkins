@@ -38,11 +38,10 @@ pipeline {
                 WORKDIR /usr/src/myapp
                 RUN apt-get update 
                 RUN apt install -y maven
-                RUN touch /usr/src/myapp/111.txt
-                CMD ["ls"]>>EOF
+                COPY actuator_mysql/ /usr/src/myapp
+                CMD ["mnv","package"]>>EOF
                 """
                 sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
-                sh 'ls $(pwd)/actuator_mysql'
             }
         }
     }
