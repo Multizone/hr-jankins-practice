@@ -65,7 +65,7 @@ pipeline {
                 FROM openjdk:8
                 
                 RUN mkdir /var/app
-                COPY /shared/actuator_mysql/target/*.jar /var/app/
+                COPY ./*.jar /var/app/
                 WORKDIR /var/app
                 ENTRYPOINT ["java", "-jar", "actuator_mysql-0.0.1-SNAPSHOT.jar"]>>EOF
                 """
