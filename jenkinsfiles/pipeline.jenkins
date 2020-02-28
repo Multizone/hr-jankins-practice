@@ -40,10 +40,11 @@ pipeline {
                 RUN apt install -y maven
                 RUN mkdir /usr/dir
                 WORKDIR /usr/app
-                CMD ["ping","google.com"]>>EOF
+                CMD ["mvn","package"]>>EOF 
                 """
                 sh """
-                docker run -v /home/kub/:/usr/app jp
+                cp -f \$(pwd)/actuator_mysql /shared
+                docker run -v /shared/actuator_mysql:/usr/app jp
                 """
                 /*
                CMD ["mvn","package"]>>EOF
