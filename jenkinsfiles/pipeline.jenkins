@@ -34,7 +34,8 @@ pipeline {
                 echo "=============== Start building an image =============== "
                 sh 'whoami'
                 sh 'pwd'
-                sh "docker build --no-cache --force-rm -t java_package ../project/ -f-<<EOFEOF"
+                sh 'ls'
+                sh "docker build --no-cache --force-rm -t java_package . -f-<<EOFEOF"
             }
         }
     }
