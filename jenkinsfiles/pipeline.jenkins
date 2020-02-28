@@ -40,7 +40,8 @@ pipeline {
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
-                ENTRYPOINT ["mnv", "package"]>>EOF
+                RUN mvn --version
+                CMD [mvn package /usr/src/myapp]>>EOF
                 """
                 sh 'docker run jp -v .:/usr/src/myapp/target'
             }
