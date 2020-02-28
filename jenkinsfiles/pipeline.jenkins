@@ -40,10 +40,10 @@ pipeline {
                 RUN apt install -y maven
                 RUN mkdir /usr/dir
                 WORKDIR /usr/app
-                CMD ["mvn","package"]>>EOF
+                CMD ["ping","google.com"]>>EOF
                 """
                 sh """
-                docker run -v \$(pwd):/usr/app jp
+                docker run -v ~/jenkins/jenkins_home/workspace/test-pipeline/:/usr/app jp
                 """
                 /*
                CMD ["mvn","package"]>>EOF
