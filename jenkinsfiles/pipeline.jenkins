@@ -36,13 +36,11 @@ pipeline {
                 sh """
                 docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
-                RUN mkdir /usr/src/myapp 
                 WORKDIR /usr/src/myapp
-                RUN apt-get update
                 RUN apt install -y maven
+                RUN touch 111.txt
                 CMD ["mvn", "package"]>>EOF
                 """
-                sh 'chmod 777 -R $(pwd)/actuator_mysql'
                 sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
         }
