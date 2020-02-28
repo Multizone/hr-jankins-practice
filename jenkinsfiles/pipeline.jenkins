@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo "=============== Start building an image =============== "
                 sh """
-                docker build --force-rm -t jp . -f-<<EOF
+                docker build --no-cache --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
                 WORKDIR /usr/src/myapp
                 RUN apt-get update 
