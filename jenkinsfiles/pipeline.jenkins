@@ -35,14 +35,13 @@ pipeline {
                 sh """
                 docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
-               
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
                 RUN mvn --version
                 CMD ["mvn", "package"]>>EOF
                 """
-                sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp/target jp'
+                sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
         }
     }
