@@ -32,6 +32,7 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
+                sh 'ls $(pwd)/actuator_mysql'
                 sh """
                 docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
