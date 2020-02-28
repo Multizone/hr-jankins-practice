@@ -33,17 +33,16 @@ pipeline {
             steps {
                 echo "=============== Start building an image =============== "
                 sh """
-                docker build --force-rm -t jp actuator_mysql -f-<<EOF
+                docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
-                RUN ls
-                COPY . /usr/src/myapp
+               
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
                 RUN mvn --version
                 CMD ["mvn", "package"]>>EOF
                 """
-                sh 'docker run -v $(pwd):/usr/src/myapp/target jp'
+                sh 'docker run -v $(pwd)/actuator_mysql:/usr/src/myapp/target jp'
             }
         }
     }
