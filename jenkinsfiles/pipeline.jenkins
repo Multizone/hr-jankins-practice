@@ -40,13 +40,13 @@ pipeline {
                 RUN apt install -y maven
                 RUN mkdir /usr/dir
                 WORKDIR /usr/app
-                CMD ["mvn","package"]>>EOF 
+                CMD ["ping","1.1.1.1"]>>EOF 
                 """
                 sh """
                 cp -rf \$(pwd)/actuator_mysql /shared
                 docker run -v /shared/actuator_mysql:/usr/app jp
                 """
-                /*
+                /*-
                CMD ["mvn","package"]>>EOF
                */
             }
