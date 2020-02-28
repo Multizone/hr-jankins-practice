@@ -32,11 +32,12 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                sh 'cat <<EOF | sh
+                sh """
+                cat <<EOF | sh
                 touch Dockerfile
                 echo RUN > Dockerfile
                 EOF
-                '
+                """
                 sh 'ls'
                 /*
                 '''
