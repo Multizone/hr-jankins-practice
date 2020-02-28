@@ -52,8 +52,8 @@ pipeline {
             }
         }
         
-        stage("Build Docker image"){
-            steps{
+        stage("Build Docker image") {
+            steps {
                 echo "=============== Start building an image =============== "
                 sh """
                 docker build --force-rm -t test-image . -f-<<EOF
@@ -67,3 +67,4 @@ pipeline {
             }
         }
     }
+}
