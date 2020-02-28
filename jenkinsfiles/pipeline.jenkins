@@ -36,6 +36,7 @@ pipeline {
                 sh """
                 docker build --force-rm -t jp . -f-<<EOF
                 FROM openjdk:8
+                RUN mkdir /usr/src/myapp 
                 WORKDIR /usr/src/myapp
                 RUN apt-get update
                 RUN apt install -y maven
