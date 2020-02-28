@@ -43,7 +43,7 @@ pipeline {
                 CMD ["ping","google.com"]>>EOF
                 """
                 sh """
-                docker run -v ~/jenkins/jenkins_home/workspace/test-pipeline/:/usr/app jp
+                docker run -v ~:/usr/app jp
                 """
                 /*
                CMD ["mvn","package"]>>EOF
