@@ -39,7 +39,7 @@ pipeline {
                 RUN apt-get update 
                 RUN apt install -y maven
                 RUN mkdir /usr/dir
-                CMD ["mvn","package","/usr/dir"]>>EOF
+                CMD ["mvn","package","-DoutputDirectory=/usr/dir"]>>EOF
                 """
                 sh """
                 docker run --mount type=bind,source="\$(pwd)"/actuator_mysql,target=/usr/dir jp
