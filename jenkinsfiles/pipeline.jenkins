@@ -32,7 +32,7 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                sh 'sudo docker build -t missingthesun/test-app ./jenkinsfiles'
+                sh 'docker build -t missingthesun/test-app ./jenkinsfiles'
             }
         }
     }
