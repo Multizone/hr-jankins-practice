@@ -32,7 +32,6 @@ pipeline {
         stage("Create a Docker image") {
             steps {
                 echo "=============== Start building an image =============== "
-                sh 'service docker start'
                 sh 'docker build -t missingthesun/test-app ./jenkinsfiles'
             }
         }
