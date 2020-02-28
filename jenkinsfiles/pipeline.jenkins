@@ -34,9 +34,8 @@ pipeline {
                 echo "=============== Start building an image =============== "
                 sh 'whoami'
                 sh 'pwd'
-                sh ```
-                #!/bin/sh
-                docker build --no-cache --force-rm -t actuator_mysql . -f<<EOF
+                sh'''
+                docker build --no-cache --force-rm -t actuator_mysql cat << 'EOF' >> .
                 FROM openjdk:8
                 RUN ls
                 COPY . /usr/src/myapp
@@ -45,9 +44,19 @@ pipeline {
                 RUN apt install -y maven
                 ENTRYPOINT ['mnv package']
                 EOF
-                ```
+                ''' 
+                
+          
                 /*
-               
+               docker build --no-cache --force-rm -t actuator_mysql . -f<<EOF
+                FROM openjdk:8
+                RUN ls
+                COPY . /usr/src/myapp
+                WORKDIR /usr/src/myapp
+                RUN apt-get update
+                RUN apt install -y maven
+                ENTRYPOINT ['mnv package']
+                EOF
                 */
             }
         }
