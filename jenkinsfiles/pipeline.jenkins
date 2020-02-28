@@ -57,9 +57,9 @@ pipeline {
                 echo "=============== Start building an image =============== "
                 sh """
                 pwd
-                ls
-                echo "-----------------"
                 ls /shared/actuator_mysql/target
+                cp -rf /shared/actuator_mysql/target/*.jar ./
+                ls
                 
                 docker build --force-rm -t test-image . -f-<<EOF
                 FROM openjdk:8
