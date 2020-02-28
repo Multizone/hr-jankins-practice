@@ -42,7 +42,7 @@ pipeline {
                 RUN apt install -y maven
                 CMD ["ls"]>>EOF
                 """
-                sh 'docker run -it -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
+                sh 'docker run -i -v $(pwd)/actuator_mysql:/usr/src/myapp jp'
             }
         }
     }
