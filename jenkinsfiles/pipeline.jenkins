@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo "=============== Start building an image =============== "
                 sh """
-                docker build --no-cache --force-rm -t jp << 'EOF' >> actuator_mysql
+                docker build --no-cache --force-rm -t jp actuator_mysql -f << EOF
                 FROM openjdk:8
                 RUN ls
                 COPY . /usr/src/myapp
@@ -59,7 +59,7 @@ pipeline {
                 
           
                 
-               docker build --no-cache --force-rm -t actuator_mysql . -f<<EOF
+               docker build --no-cache --force-rm -t jp actuator_mysql -f << EOF
                 FROM openjdk:8
                 RUN ls
                 COPY . /usr/src/myapp
