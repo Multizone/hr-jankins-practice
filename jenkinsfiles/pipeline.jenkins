@@ -43,7 +43,7 @@ pipeline {
                 CMD ["mvn","package"]>>EOF 
                 """
                 sh """
-                cp -f \$(pwd)/actuator_mysql /shared
+                cp -rf \$(pwd)/actuator_mysql /shared
                 docker run -v /shared/actuator_mysql:/usr/app jp
                 """
                 /*
